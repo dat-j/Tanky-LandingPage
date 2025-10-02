@@ -65,13 +65,14 @@ function Hero() {
         </div>
       </div>
       <div className="relative mt-8 md:mt-12 mx-[calc(50%-50vw)] w-screen">
-        <Image
+          <Image
           src="/tank-hero.png"
           alt="Tank"
-          width={1440}
-          height={570}
-          className="w-full h-auto object-cover select-none pointer-events-none"
-          priority
+            width={1440}
+            height={570}
+            loading="eager"
+            priority
+            className="w-full h-auto object-cover select-none pointer-events-none"
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 md:h-40 bg-gradient-to-b from-transparent to-[var(--background)]" />
       </div>
@@ -93,7 +94,7 @@ function FeatureCard({
       <div className="pointer-events-none absolute inset-0 rounded-[36px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]" />
       <div className="rounded-[28px] overflow-hidden border border-white/12 bg-[#0b1821]">
         <div className="relative aspect-[4/5]">
-          <Image src={image} alt="" fill className="object-cover" />
+          <Image src={image} alt="" fill className="object-cover" loading="lazy" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent" />
           <div className="absolute left-4 right-4 bottom-4">
             <div className="rounded-2xl border border-[rgba(215,255,58,0.45)] bg-[rgba(9,17,23,0.65)] backdrop-blur-sm shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
