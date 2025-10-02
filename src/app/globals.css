@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+/* Tanky theme variables (Tailwind v4 @theme inline) */
+:root {
+  --background: #050e14; /* deep navy */
+  --foreground: #ecf2f5;
+  --tanky-muted: #92a6b2;
+  --tanky-card: #0a1a23;
+  --tanky-card-2: #0e222d;
+  --tanky-accent: #d7ff3a; /* neon yellow */
+  --tanky-accent-2: #9ef01a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--tanky-muted);
+  --color-card: var(--tanky-card);
+  --color-card-2: var(--tanky-card-2);
+  --color-accent: var(--tanky-accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Base */
+* { box-sizing: border-box; }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Grid background + stars */
+.tanky-bg {
+  position: relative;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(127, 255, 0, 0.10), transparent 60%),
+    radial-gradient(800px 400px at 10% 0%, rgba(16, 226, 57, 0.06), transparent 60%),
+    radial-gradient(800px 400px at 90% 0%, rgba(16, 226, 57, 0.06), transparent 60%),
+    #050e14;
+}
+
+.tanky-bg:before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px;
+  background-position: center;
+  mask-image: radial-gradient(circle at 50% 20%, black 0%, black 65%, transparent 85%);
+  z-index: 0;
+}
+
+.tanky-star { position: absolute; width: 6px; height: 6px; background: radial-gradient(circle, var(--tanky-accent) 0%, rgba(215,255,58,0.1) 60%, transparent 70%); border-radius: 9999px; filter: blur(0.2px); box-shadow: 0 0 16px rgba(215,255,58,0.9); }
+
+.container-safe { max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 16px; padding-right: 16px; }
+
+/* Reusable visual components */
+.glow-ring {
+  box-shadow: 0 0 0 2px rgba(215,255,58,0.22), 0 0 30px rgba(215,255,58,0.25) inset;
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+}
+
+.caption-gradient {
+  background: linear-gradient(135deg, rgba(2,6,23,0.7), rgba(0,0,0,0.6)), linear-gradient(180deg, rgba(215,255,58,0.15), transparent);
+}
+
+.btn-accent {
+  background-color: var(--tanky-accent);
+  color: #0a0a0a;
+}
+
+.btn-accent:hover { filter: brightness(0.95); }
+
+.btn-outline-accent { border: 1px solid rgba(215,255,58,0.5); color: #d7ff3a; }
+.btn-outline-accent:hover { background: rgba(215,255,58,0.08); }
+
+/* Typography helpers */
+.heading-display { font-weight: 800; letter-spacing: -0.02em; }
+.text-muted { color: var(--tanky-muted); }
+
+/* Decorative thin segmented border (with occasional gold highlights) */
+.feature-frame { position: relative; }
+.feature-frame:after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 36px; /* must match outer rounded */
+  padding: 1px; /* thin line */
+  background:
+    conic-gradient(
+      from 10deg,
+      rgba(215,255,58,0) 0 18%, rgba(215,255,58,0.85) 18% 20%, rgba(215,255,58,0) 20% 58%,
+      rgba(215,255,58,0.85) 58% 60%, rgba(215,255,58,0) 60% 86%, rgba(215,255,58,0.85) 86% 88%, rgba(215,255,58,0) 88% 100%
+    ),
+    linear-gradient(rgba(255,255,255,0.10), rgba(255,255,255,0.10));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude; /* show only the border area */
+}
+
+/* Weekly Rewards styles */
+.rewards-panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  position: relative;
+}
+.rewards-panel:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, transparent 40%, rgba(194,255,71,0.10) 70%, rgba(194,255,71,0.18) 100%);
+  pointer-events: none;
+}
+
+.rewards-board {
+  position: relative;
+  border-radius: 22px;
+  border: 1px solid rgba(215,255,58,0.6);
+  box-shadow: 0 0 0 1px rgba(215,255,58,0.25) inset, 0 0 40px rgba(215,255,58,0.15);
+  background: rgba(6,19,26,0.65);
+  overflow: hidden;
+}
+
+.rewards-board .grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.rewards-ghost {
+  position: absolute;
+  font-weight: 800;
+  color: rgba(255,255,255,0.08);
+  letter-spacing: 0.04em;
+  user-select: none;
+  pointer-events: none;
+}
+
+.avatar-neon {
+  box-shadow: 0 0 0 2px rgba(215,255,58,0.35), 0 0 30px rgba(215,255,58,0.45);
+}
+
+.bullet-accent {
+  box-shadow: 0 0 0 2px rgba(215,255,58,0.25);
+}
+
+/* Roadmap */
+.roadmap-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #0e4257, #0b313f);
+  border-radius: 9999px;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.06);
+}
+
+.roadmap-line:before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: #0e4257;
+  border-radius: 9999px;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.06) inset;
+}
+
+.step-badge {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 86px;
+  height: 86px;
+}
+
+.roadmap-ghost-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Footer */
+.social-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(215,255,58,0.08);
+  border: 1px solid rgba(215,255,58,0.5);
+  color: var(--tanky-accent);
+}
+.social-btn:hover { background: rgba(215,255,58,0.14); }
+
