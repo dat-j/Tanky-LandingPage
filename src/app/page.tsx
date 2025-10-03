@@ -359,18 +359,20 @@ function Roadmap() {
         <div className="absolute left-1/2 top-0 bottom-0 w-[6px] -translate-x-1/2 bg-[linear-gradient(180deg,#0e4257,#0b313f)] rounded-full shadow-[inset_0_0_0_2px_rgba(255,255,255,0.06)]" />
         <div className="space-y-14">
           {steps.map((s) => (
-            <div key={`m-${s.step}`} className="relative text-center">
+            <div key={`m-${s.step}`} className="relative">
               <div className="relative mx-auto w-[72px] h-[72px]">
                 <Image src="/step.png" alt="step" fill className="object-contain" />
                 <div className="absolute inset-0 flex items-center justify-center text-xl font-extrabold text-white/90">{s.step}</div>
               </div>
-              <div className="mt-4 text-[#c2ff47] font-semibold">Step {s.step}</div>
-              <div className="heading-display text-2xl mt-2">{s.title}</div>
-              <ul className="mt-3 text-muted space-y-1 text-sm">
-                <li>• Top 10% of player</li>
-                <li>• Mainet Release</li>
-                <li>• Custom Rooms</li>
-              </ul>
+              <div className={s.side === 'left' ? "mt-4 ml-0 mr-auto w-[calc(50%-24px)] text-left pr-6" : "mt-4 ml-auto mr-0 w-[calc(50%-24px)] text-left pl-6"}>
+                <div className="text-[#c2ff47] font-semibold">Step {s.step}</div>
+                <div className="heading-display text-2xl mt-2">{s.title}</div>
+                <ul className="mt-3 text-muted space-y-1 text-sm">
+                  <li>• Top 10% of player</li>
+                  <li>• Mainet Release</li>
+                  <li>• Custom Rooms</li>
+                </ul>
+              </div>
             </div>
           ))}
         </div>
