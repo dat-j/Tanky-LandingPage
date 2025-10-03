@@ -48,12 +48,16 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       {/* stars */}
-      <div className="tanky-star" style={{ left: "20%", top: "180px" }} />
-      <div className="tanky-star" style={{ left: "50%", top: "120px" }} />
-      <div className="tanky-star" style={{ left: "80%", top: "220px" }} />
+      <div className="tanky-star" style={{ left: "14%", top: "206px" }} />
+      <div className="tanky-star" style={{ left: "46.5%", top: "89px" }} />
+      <div className="tanky-star" style={{ left: "78.9%", top: "448px" }} />
+      <div className="tanky-star" style={{ left: "20.5%", top: "569px" }} />
+      <div className="tanky-star" style={{ left: "91.9%", top: "208px" }} />
       <div className="container-safe relative pt-16 md:pt-24">
         <div className="text-center">
-          <h1 className="heading-display text-5xl md:text-7xl">Tank Battle Royale</h1>
+          <h1 className="heading-display text-5xl md:text-7xl">
+            Tank Battle Royale
+          </h1>
           <p className="mt-4 text-muted text-lg md:text-xl">
             A 2D tank battle royale game build on Solana
           </p>
@@ -65,14 +69,14 @@ function Hero() {
         </div>
       </div>
       <div className="relative mt-8 md:mt-12 mx-[calc(50%-50vw)] w-screen">
-          <Image
+        <Image
           src="/tank-hero.png"
           alt="Tank"
-            width={1440}
-            height={570}
-            loading="eager"
-            priority
-            className="w-full h-auto object-cover select-none pointer-events-none"
+          width={1440}
+          height={570}
+          loading="eager"
+          priority
+          className="w-full h-auto object-cover select-none pointer-events-none"
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 md:h-40 bg-gradient-to-b from-transparent to-[var(--background)]" />
       </div>
@@ -90,14 +94,14 @@ function FeatureCard({
   desc: string;
 }) {
   return (
-    <div className="feature-frame relative rounded-[36px] p-3 md:p-4 bg-[#06131a] border border-white/5 shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
+    <div className="feature-frame group relative rounded-[36px] p-3 md:p-4 bg-[#06131a] border border-white/5 shadow-[0_30px_80px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_40px_100px_rgba(0,0,0,0.55)]">
       <div className="pointer-events-none absolute inset-0 rounded-[36px] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]" />
-      <div className="rounded-[28px] overflow-hidden border border-white/12 bg-[#0b1821]">
+      <div className="rounded-[28px] overflow-hidden border border-white/12 bg-[#0b1821] transition-colors duration-300 group-hover:border-[rgba(215,255,58,0.35)]">
         <div className="relative aspect-[4/5]">
-          <Image src={image} alt="" fill className="object-cover" loading="lazy" />
+          <Image src={image} alt="" fill className="object-cover transition-transform duration-500 ease-out will-change-transform group-hover:scale-105" loading="lazy" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent" />
           <div className="absolute left-4 right-4 bottom-4">
-            <div className="rounded-2xl border border-[rgba(215,255,58,0.45)] bg-[rgba(9,17,23,0.65)] backdrop-blur-sm shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
+            <div className="rounded-2xl border border-[rgba(215,255,58,0.45)] bg-[rgba(9,17,23,0.65)] backdrop-blur-sm shadow-[0_12px_30px_rgba(0,0,0,0.35)] transition-transform duration-300 ease-out group-hover:-translate-y-0.5">
               <div className="px-5 py-4 text-white">
                 <div className="font-extrabold">{title}</div>
                 <div className="text-sm text-white/85 mt-1">{desc}</div>
@@ -217,9 +221,9 @@ function Rewards() {
                   { img: "/avatar-1.png", name: "CrytoTank", tag: "@cryptotank" },
                   { img: "/avatar-3.png", name: "SolanaMaster", tag: "@somaster" },
                 ].map((p, i) => (
-                  <div key={i} className="relative flex items-center gap-4">
+                  <div key={i} className="group relative flex items-center gap-4">
                     <div
-                      className={`relative rounded-full overflow-hidden ${
+                      className={`relative rounded-full overflow-hidden transition-transform duration-300 ease-out will-change-transform group-hover:scale-105 ${
                         p.name === "DarthInvade"
                           ? "w-16 h-16 md:w-20 md:h-20 avatar-neon"
                           : p.name === "CrytoTank"
@@ -250,9 +254,9 @@ function Rewards() {
                   { img: "/avatar-2.png", name: "DarthInvade", tag: "@darthvadeee" },
                   { img: "/avatar-3.png", name: "SolanaMaster", tag: "@somaster" },
                 ].map((p, i) => (
-                  <div key={i} className={`text-center ${i === 1 ? "-translate-y-3 md:-translate-y-4" : ""}`}>
+                  <div key={i} className={`group text-center ${i === 1 ? "-translate-y-3 md:-translate-y-4" : ""}`}>
                     <div
-                      className={`mx-auto rounded-full overflow-hidden relative ${
+                      className={`mx-auto rounded-full overflow-hidden relative transition-transform duration-300 ease-out will-change-transform group-hover:scale-105 ${
                         i === 1
                           ? "w-24 h-24 md:w-28 md:h-28 avatar-neon"
                           : i === 0
@@ -275,8 +279,8 @@ function Rewards() {
                 { img: "/avatar-4.png", name: "BattleKing", tag: "@battle128" },
                 { img: "/avatar-5.png", name: "BlitzBuster", tag: "@bblitzz" },
               ].map((p, i) => (
-                <div key={i} className="relative flex items-center gap-3">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden">
+                <div key={i} className="group relative flex items-center gap-3">
+                  <div className="relative w-10 h-10 rounded-full overflow-hidden transition-transform duration-300 ease-out will-change-transform group-hover:scale-110">
                     <Image src={p.img} alt="" fill className="object-cover" />
                   </div>
                   <div>
