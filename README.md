@@ -3,6 +3,6 @@
 Chạy dự án:
 
 ```bash
-npm install --ignore-scripts --no-bin-links
+npm install
 npm run dev
 ```
