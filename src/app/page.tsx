@@ -23,14 +23,14 @@ function Navbar() {
 
         {/* Mobile menu */}
         <details className="md:hidden relative">
-          <summary className="list-none rounded-full border border-white/15 p-2 inline-flex items-center justify-center" aria-label="Open menu">
+          <summary className="mobile-menu-trigger list-none rounded-full border border-white/15 p-2 inline-flex items-center justify-center" aria-label="Open menu">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="3" y1="6" x2="21" y2="6"/>
               <line x1="3" y1="12" x2="21" y2="12"/>
               <line x1="3" y1="18" x2="21" y2="18"/>
             </svg>
           </summary>
-          <div className="absolute right-0 mt-3 w-64 rounded-xl border border-white/10 bg-[#0b1821] p-3 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
+          <div className="mobile-menu-panel absolute right-0 mt-3 w-64 rounded-xl border border-white/10 bg-[#0b1821] p-3 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
             <a href="#features" className="block rounded-lg px-3 py-2 hover:bg-white/5">Feature</a>
             <a href="#rewards" className="block rounded-lg px-3 py-2 hover:bg-white/5">Weekly Rewards</a>
             <a href="#roadmap" className="block rounded-lg px-3 py-2 hover:bg-white/5">Roadmap</a>
@@ -141,52 +141,153 @@ function Rewards() {
   return (
     <section id="rewards" className="container-safe pt-20 md:pt-28">
       <div className="rewards-panel rounded-[36px] p-8 md:p-12 relative overflow-hidden">
-        <h2 className="relative heading-display text-5xl md:text-6xl text-center md:text-left">Weekly Rewards</h2>
-        <p className="relative text-muted mt-2 text-center md:text-left">Top 10% of players qualify for on-chain prices every week</p>
-        <div className="relative grid md:grid-cols-[1fr_1.3fr] gap-10 mt-12">
-          <ul className="space-y-6 text-muted self-center md:self-start">
-            <li className="flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-accent bullet-accent"></span> Top 10% of player</li>
-            <li className="flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-accent bullet-accent"></span> Mainet Release</li>
-            <li className="flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-accent bullet-accent"></span> Custom Rooms</li>
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="relative heading-display text-5xl md:text-6xl text-center md:text-left">
+            Weekly Rewards
+          </h2>
+          <p className="relative text-muted mt-2 text-center md:text-left">
+            Top 10% of players qualify for on-chain prices every week
+          </p>
+        </div>
+        <div className="relative grid lg:grid-cols-[1fr_1.3fr] gap-10 mt-12">
+          <ul className="space-y-6 text-muted self-center md:self-center">
+            <li className="flex justify-center items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-accent bullet-accent"></span>{" "}
+              Top 10% of player
+            </li>
+            <li className="flex justify-center items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-accent bullet-accent"></span>{" "}
+              Mainet Release
+            </li>
+            <li className="flex justify-center items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-accent bullet-accent"></span>{" "}
+              Custom Rooms
+            </li>
           </ul>
-          <div className="rewards-board p-6 md:p-8">
+          <div className="rewards-board p-6 md:py-24 md:px-8">
             <div className="grid-lines" />
 
-            {/* ghost numbers */}
-            <div className="rewards-ghost" style={{ left: '28%', top: '16%', fontSize: '48px' }}>02</div>
-            <div className="rewards-ghost" style={{ left: '50%', top: '6%', fontSize: '56px', transform: 'translateX(-50%)' }}>01</div>
-            <div className="rewards-ghost" style={{ right: '28%', top: '16%', fontSize: '48px' }}>03</div>
+            {/* ghost numbers - hide on mobile/tablet */}
+            <div className="hidden lg:block">
+              <div
+                className="rewards-ghost"
+                style={{ left: "13%", top: "5%", fontSize: "48px" }}
+              >
+                02
+              </div>
+              <div
+                className="rewards-ghost"
+                style={{
+                  left: "50%",
+                  top: "1%",
+                  fontSize: "56px",
+                  transform: "translateX(-50%)",
+                }}
+              >
+                01
+              </div>
+              <div
+                className="rewards-ghost"
+                style={{ right: "13%", top: "5%", fontSize: "48px" }}
+              >
+                03
+              </div>
 
-            {/* top 3 */}
-            <div className="grid grid-cols-3 gap-6 relative">
-              {[
-                { img: "/avatar-1.png", name: "CrytoTank", tag: "@cryptotank" },
-                { img: "/avatar-2.png", name: "DarthInvade", tag: "@darthvadeee" },
-                { img: "/avatar-3.png", name: "SolanaMaster", tag: "@somaster" },
-              ].map((p, i) => (
-                <div key={i} className="text-center">
-                  <div className={`mx-auto w-20 h-20 rounded-full overflow-hidden relative ${i===1 ? 'avatar-neon' : ''}`}>
-                    <Image src={p.img} alt="" fill className="object-cover" />
+              {/* ghost numbers near bottom avatars */}
+              <div
+                className="rewards-ghost"
+                style={{ right: "6%", bottom: "31%", fontSize: "40px" }}
+              >
+                04
+              </div>
+              <div
+                className="rewards-ghost"
+                style={{ right: "6%", bottom: "16%", fontSize: "40px" }}
+              >
+                05
+              </div>
+            </div>
+
+            {/* top 3 - vertical list on small/medium, grid on large */}
+            <div className="relative">
+              {/* Vertical list */}
+              <div className="flex flex-col gap-6 lg:hidden">
+                {[
+                  { img: "/avatar-2.png", name: "DarthInvade", tag: "@darthvadeee" },
+                  { img: "/avatar-1.png", name: "CrytoTank", tag: "@cryptotank" },
+                  { img: "/avatar-3.png", name: "SolanaMaster", tag: "@somaster" },
+                ].map((p, i) => (
+                  <div key={i} className="relative flex items-center gap-4">
+                    <div
+                      className={`relative rounded-full overflow-hidden ${
+                        p.name === "DarthInvade"
+                          ? "w-16 h-16 md:w-20 md:h-20 avatar-neon"
+                          : p.name === "CrytoTank"
+                          ? "w-14 h-14 md:w-16 md:h-16 avatar-ring-cyan"
+                          : "w-14 h-14 md:w-16 md:h-16 avatar-ring-orange"
+                      }`}
+                    >
+                      <Image src={p.img} alt="" fill className="object-cover" />
+                    </div>
+                    <div>
+                      <div className="font-semibold">{p.name}</div>
+                      <div className="text-xs text-muted">{p.tag}</div>
+                    </div>
+                    <div
+                      className="rewards-ghost absolute right-2 md:right-4 top-1/2 -translate-y-1/2"
+                      style={{ fontSize: "36px" }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
                   </div>
-                  <div className="mt-3 font-semibold">{p.name}</div>
-                  <div className="text-xs text-muted">{p.tag}</div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              {/* Grid on large screens */}
+              <div className="hidden lg:grid grid-cols-3 gap-6">
+                {[
+                  { img: "/avatar-1.png", name: "CrytoTank", tag: "@cryptotank" },
+                  { img: "/avatar-2.png", name: "DarthInvade", tag: "@darthvadeee" },
+                  { img: "/avatar-3.png", name: "SolanaMaster", tag: "@somaster" },
+                ].map((p, i) => (
+                  <div key={i} className={`text-center ${i === 1 ? "-translate-y-3 md:-translate-y-4" : ""}`}>
+                    <div
+                      className={`mx-auto rounded-full overflow-hidden relative ${
+                        i === 1
+                          ? "w-24 h-24 md:w-28 md:h-28 avatar-neon"
+                          : i === 0
+                          ? "w-20 h-20 avatar-ring-cyan"
+                          : "w-20 h-20 avatar-ring-orange"
+                      }`}
+                    >
+                      <Image src={p.img} alt="" fill className="object-cover" />
+                    </div>
+                    <div className="mt-3 font-semibold">{p.name}</div>
+                    <div className="text-xs text-muted">{p.tag}</div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* bottom list */}
-            <div className="mt-8 space-y-4">
+            <div className="mt-8 space-y-8">
               {[
                 { img: "/avatar-4.png", name: "BattleKing", tag: "@battle128" },
                 { img: "/avatar-5.png", name: "BlitzBuster", tag: "@bblitzz" },
               ].map((p, i) => (
-                <div key={i} className="flex items-center gap-3">
+                <div key={i} className="relative flex items-center gap-3">
                   <div className="relative w-10 h-10 rounded-full overflow-hidden">
                     <Image src={p.img} alt="" fill className="object-cover" />
                   </div>
                   <div>
                     <div className="text-sm font-semibold">{p.name}</div>
                     <div className="text-xs text-muted">{p.tag}</div>
+                  </div>
+                  <div
+                    className="rewards-ghost absolute right-2 md:right-4 top-1/2 -translate-y-1/2 lg:hidden"
+                    style={{ fontSize: "32px" }}
+                  >
+                    {String(i + 4).padStart(2, "0")}
                   </div>
                 </div>
               ))}
@@ -213,7 +314,7 @@ function Roadmap() {
       <div className="relative mt-12 hidden md:block">
         <div className="roadmap-ghost-grid" />
         <div className="roadmap-line" />
-        <div className="grid grid-cols-[1fr_80px_1fr] gap-x-12 gap-y-24">
+        <div className="grid grid-cols-[1fr_80px_1fr] gap-x-6 lg:gap-x-12 gap-y-24">
           {steps.map((s) => (
             <Fragment key={`l-${s.step}`}>
               <div className={s.side === 'left' ? "text-left" : "hidden md:block"}>
@@ -235,7 +336,7 @@ function Roadmap() {
                   <div className="absolute inset-0 flex items-center justify-center text-2xl font-extrabold text-white/90">{s.step}</div>
                 </div>
               </div>
-              <div key={`r-${s.step}`} className={s.side === 'right' ? "md:translate-x-32 text-left" : "hidden md:block"}>
+              <div key={`r-${s.step}`} className={s.side === 'right' ? "text-left md:translate-x-4 lg:translate-x-20 xl:translate-x-32" : "hidden md:block"}>
                 {s.side === 'right' && (
                   <>
                     <div className="text-[#c2ff47] font-semibold">Step {s.step}</div>
@@ -293,10 +394,10 @@ export default function Home() {
 
 function Footer() {
   return (
-    <footer className="mt-20 border-t border-white/5">
+    <footer className="mt-20">
       <div className="container-safe py-6 md:py-8 flex flex-col md:flex-row gap-4 md:gap-0 items-center md:items-center md:justify-between text-sm md:text-xl text-muted">
         <div className="font-extrabold text-accent">TANKY</div>
-        <div className="text-xs order-last md:order-none">© 2025 Tanky. All rights reserved</div>
+        <div className="text-sm order-last md:order-none">© 2025 Tanky. All rights reserved</div>
         <div className="flex items-center gap-3 order-none">
           <a href="#" aria-label="Instagram" className="social-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
